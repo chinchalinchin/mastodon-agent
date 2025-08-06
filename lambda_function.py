@@ -39,10 +39,10 @@ import boto3
 from mypy_boto3_dynamodb.service_resource import Table
 
 
-MASTODON_SECRET_PREFIX                          = "prod/agn/mastodon-bot" 
+MASTODON_SECRET_PREFIX                          = "prod/mastodon-bot" 
 GEMINI_SECRET_NAME                              = "cumberland-cloud/gemini"
 GEMINI_MODEL                                    = "gemini-2.5-flash"
-DYNAMODB_TABLE_NAME                             = "cc-prd-agn-mastodon-bot"
+DYNAMODB_TABLE_NAME                             = "mastodon-bot"
 
 
 # --- Pydantic Models ---

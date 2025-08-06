@@ -1,11 +1,3 @@
-Allegany Galactic Nucleus
-=========================
-
-The Allegany Galactic Nucleus (AGN) is a website for a poetry and arts publication in Western Maryland. It is built using Sphinx and deployed to an AWS S3 bucket.
-
-- `Allegany Galactic Nucleus <https://aleganygalactic.space>`_
-- `Allegany Galactic Nucleus Mastodon <https://platform.alleganygalactic.space>`_.
-
 ============
 Mastodon Bot
 ============
@@ -14,8 +6,8 @@ This directory contains source files and documentation for a Mastodon bot runnin
 
 The bot is built through a Docker image of the Lambda function and then deployed with Terraform onto AWS. The bot templates context and uses Google's ``generativeai`` library to generate "*toots*" that are posted to the Mastodon API via the ``Mastodon.py`` library any time it is called. Its specifications are given in more detail below. 
 
-Setup
-=====
+Quickstart
+==========
 
 These are common commands that are useful in the context of the project. Ensure ``AWS_ACCOUNT_ID`` AND ``AWS_REGION`` are set before executing these commands.
 
@@ -26,27 +18,23 @@ Build
 
 .. code-block:: bash
 
-    aws ecr get-login-password --region $AWS_REGION |\
+    gmoore@mendicant-bias mastodon % aws ecr get-login-password --region $AWS_REGION |\
         docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
 
 **Image Build**
 
 .. code-block:: bash
 
-    docker buildx build \
+    gmoore@mendicant-bias mastodon % docker buildx build \
         --platform linux/amd64 \
-        -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/cc-prd-agn-mastodon-bot:1.60 \
+        -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/mastodon-bot:1.60 \
         --load .
 
 **Image Push**
 
 .. code-block:: bash
 
-    docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/cc-prd-agn-mastodon-bot:1.60
-
-.. note::
-
-    After the newest image version is pushed, the Terrafrom version in ``cloud/tf/agn_bots.tf`` needs updated and applied to deploy the new Lambda function.
+    gmoore@mendicant-bias mastodon % docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/mastodon-bot:1.60
 
 Debug
 -----
@@ -87,7 +75,7 @@ Debug
 
     import boto3 
 
-    state = boto3.resource('dynamodb').Table('cc-prd-agn-mastodon-bot')
+    state = boto3.resource('dynamodb').Table('mastodon-bot')
     current_state = state.get_item(Key = { 'persona': '<persona>' }).get('Item', {})
     # get last processed mention
     #   see NOTE #1 in lambda_function.py for more detail.
@@ -102,7 +90,7 @@ Debug
 
 .. code-block:: bash
 
-    echo '{ 
+    gmoore@mendicant-bias mastodon % echo '{ 
         "id"                                    : <id>,
         "current_date"                          : <current_date>,
         "persona"                               : <persona>,
@@ -128,7 +116,7 @@ Environment
 
 **State**
 
-A DynamoDB table ``cc-prd-agn-mastodon-bot`` with a partition key of ``persona`` maintains the bot's state. The state has the following properties.
+A DynamoDB table ``mastodon-bot`` with a partition key of ``persona`` maintains the bot's state. The state has the following properties.
 
 - ``last_processed_mention_id``: The last ``mention_id`` the bot has processed from its notifications through the ``reply`` mode protocol.
 - ``memory``: A block of text the LLM can use to persist data across executions.
@@ -147,17 +135,14 @@ Secrets have been created in the AWS SecretsManager for this bot to consume,
 Source Code
 ===========
 
-The source code is maintained in a Github repository `github.com/chinchalinchin/allegany-galactic.git`_ along with the static content of the website. 
+The source code is maintained in a Github repository `github.com/chinchalinchin/mastodon-bot.git`_ along with the static content of the website. 
 
 Project Structure 
 -----------------
 
 .. code-block:: bash
     
-    gmoore@Grants-MacBook-Pro mastodon % pwd
-    /Users/gmoore/Home/lib/allegany-galactic/bots/mastodon
-    
-   gmoore@Grants-MacBook-Pro mastodon % tree
+    gmoore@mendicant-bias mastodon % tree
     .
     ├── context
     │   ├── dashboards
@@ -188,6 +173,23 @@ Project Structure
 
 Specification
 =============
+
+.. _input:
+
+Input
+-----
+
+The Lambda function must be called with input structured as follows,
+
+
+.. code-block:: bash
+    
+    gmoore@mendicant-bias mastodon % aws lambda invoke \
+        --function-name mastodon-bot \
+        --payload '{"persona":"<persona>"}'
+        output.txt
+
+Where persona must be one of values in ``context/personas/*``. Currently valid values are: ``cioran``, ``crowley``, ``cummings``, ``frege``, ``heidegger``, ``keats``, ``sartre``, ``tarski``, ``wittgenstein``.
 
 .. _response-schema:
 
