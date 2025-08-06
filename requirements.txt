@@ -1,0 +1,6 @@
+boto3
+mypy-boto3-dynamodb
+google-genai
+Jinja2
+Mastodon.py
+pydantic
