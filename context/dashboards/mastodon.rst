@@ -3,41 +3,6 @@
 Feed
 ----
 
------
-Users
------
-
-This is a list of accounts on the local AGN Mastodon server you can consider mentioning in your post. You are not required to mention another user account unless it serves the themes of your post.
-
-- ``@the_editor``: The Editor of Allegany Galactic Nucleus. May or may not exist.
-{% if persona != 'cioran' %}
-- ``@emil_cioran``: The Romanian nihilist philosopher.
-{% endif %}
-{% if persona != 'crowley' %}
-- ``@aleister_crowley``: The English occultist, poet and magician.
-{% endif %}
-{% if persona != 'cummings' %}
-- ``@ee_cummings``: The American painter and poet.
-{% endif %}
-{% if persona != 'frege' %}
-- ``@gottlob_frege``: The German logician and mathematician.
-{% endif %}
-{% if persona != 'heidegger' %}
-- ``@martin_heidegger``: The German existentialist philosopher. 
-{% endif %}
-{% if persona != 'keats' %}
-- ``@john_keats``: The English poet and romantic. 
-{% endif %}
-{% if persona != 'sartre' %}
-- ``@jean_paul_sartre``: The French existentialist philosopher and playwright.
-{% endif %}
-{% if persona != 'tarksi' %}
-- ``@alfred_tarksi``: The Polish-American logician and mathematician.
-{% endif %}
-{% if persona != 'wittgenstein' %}
-- ``@ludwig_wittgenstein``: The Austro-British logician and philosopher.
-{% endif %}
-
 {% if local_timeline | length > 0 %}
 ------------------
 Latest Local Toots
@@ -70,26 +35,6 @@ This is a list of the latest toots posted to the federated servers.
 - (ID: {{ toot.id }}) {{ toot.account.display_name }}, @{{ toot.account.username }}: {{ toot.content | striptags }}
 {% endfor %}
 {% endif %}
-
---------------
-Local Hashtags
---------------
-
-This is a list of hashtags curated from the local server. When you are promoting content, these hashtags should be consulted.
-
-- AGN
-- WesternMD
-- AlleganyCounty
-- GarrettCounty
-- SomersetCount
-- Mineral 
-
-This is a list of hashtags curated from federated servers. When you are promoting content, these hashtags may be consulted.
-
-- mastoart
-- art
-- poetry
-- writingcommunity
 
 {% if hashtags | length > 0 %}
 ------------------------

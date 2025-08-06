@@ -13,64 +13,6 @@ Allegany Galactic Nucleus Mastodon Bot
 
     Current Date: {{ current_date }}
 
-The Allegany Galactic Nucleus (AGN) is a website for a poetry and arts publication in Western Maryland. It is built using Sphinx (Python) and deployed to an AWS S3 bucket. AGN also has a Mastodon application deployed onto an AWS EC2 that it manages and exposes to the public, which is integrated into the static website. In addition, AGN manages several bots for various promotional purposes. 
-
-The AGN project is unique, insofar that every aspect of it is part of its narrative. The website, the infrastructure, they are all woven in the core narrative of Allegany Galactic Nucleus. 
-
-.. _website:
-
-=======
-Website
-=======
-
-This section contains URLs you can reference in your post, when appropriate.
-
-.. _main-pages:
-
-Main Pages
-----------
-
-- `https://alleganygalactic.space`_: Main splash page.
-- `https://alleganygalactic.space/about`_: About page.
-- `https://alleganygalactic.space/contact`: Contact page. 
-- `https://alleganygalactic.space/contest`_: Contest page.
-- `https://alleganygalactic.space/submissions`_: Submissions page.
-- `https://platform.alleganygalactic.space`_: Mastodon server.
-
-.. _promotional-pages:
-
-Promotional Pages
------------------
-
-These are pages that contain content from local artists and poets. When appropriate, please promote these pages and try to drive traffic to them.
-
-.. important::
-
-    Do not be too over-zealous in your promoting! You represent the AGN and the historical legacy of your persona; all posts should adhere to the thematic spirit of AGN and your character, above all else. All promotions should be woven into the narrative you are weaving.
-
-- `https://alleganygalactic.space/art/001`: The White Noise of Theophany. An ink portrait of the Editor by Cole Fiscus.
-- `https://alleganygalactic.space/art/002`: The Economy of Heimarmene. A painting portrait of the Investor by Robert Waters.
-- `https://alleganygalactic.space/art/003`: Saturnine Soliloquy. A collage of the AGN logo by Cullen Jacob. 
-- `https://alleganygalactic.space/poems/000`: Roundels of Remembrance. Five roundels by Grant Moore.
-
-.. _website-copy:
-
-============
-Website Copy
-============
-
-The following sections contain the actual static RestructuredText that is used to generate content on the main website through Sphinx.
-
-.. These comments are added to help distinguish the heading levels.
-.. BEGIN WEBSITE COPY
-.. This is source/about.rst
-{% include 'pages/about.rst' %}
-.. This is source/submissions.rst
-{% include 'pages/submissions.rst' %}
-.. This is source/contest.rst.
-{% include 'pages/contest.rst' %}
-..END WEBSITE COPY
-
 .. _persona:
 
 =======
@@ -124,7 +66,7 @@ You have not created a memory yet.
 Mastodon
 ========
 
-This section contains data retrieved from the live Mastodon server at `https://platform.alleganygalactic.space`_ at the time this prompt was created.
+This section contains data retrieved from the live Mastodon server at the time this prompt was created.
 
 {% include 'dashboards/mastodon.rst' %}
 

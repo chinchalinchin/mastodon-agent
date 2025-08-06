@@ -20,11 +20,9 @@
 #       >>> mast.notifications(id='55')
 #           ['id', 'type', 'created_at', 'group_key', 'account']
 #
-#   Therefore, the following lines are a hacky workaround until the client library is updated.
+#   The HACK label tags hacky workaround until the client library is updated.
 #
 #   Here is the GitHub issue I have opened about this: https://github.com/halcy/Mastodon.py/issues/416
-# 
-#  IMPORTANT: DO NOT ATTEMPT TO FIX THIS. I WILL FIX IT WHEN MASTODON.PY IS UPDATED.
 
 import json
 import os

@@ -2,9 +2,7 @@
 Mastodon Bot
 ============
 
-This directory contains source files and documentation for a Mastodon bot running on AWS Lamdba. The bot authenticates to the Mastodon server deployed on an AWS EC2 via a load balancer, both residing separate subnets of the AGN account's VPC. The Mastodon instance is hosted at,
-
-The bot is built through a Docker image of the Lambda function and then deployed with Terraform onto AWS. The bot templates context and uses Google's ``generativeai`` library to generate "*toots*" that are posted to the Mastodon API via the ``Mastodon.py`` library any time it is called. Its specifications are given in more detail below. 
+This directory contains source files and documentation for a Mastodon bot running on AWS Lamdba. The bot can be built with the ``Dockerfile`` in the project root and then deployed onto AWS. The bot templates prompts and uses Google's ``generativeai`` library to generate "*toots*" that are posted to the Mastodon API via the ``Mastodon.py`` library. Specifications are given in more detail below. 
 
 Quickstart
 ==========
@@ -129,7 +127,7 @@ A DynamoDB table ``mastodon-bot`` with a partition key of ``persona`` maintains 
 
 Secrets have been created in the AWS SecretsManager for this bot to consume,
 
-- ``prod/agn/mastodon-bot/<persona>``: Keyed values for the Mastodon API, where ``<persona>`` is the bot's persona.
+- ``prod/mastodon-bot/<persona>``: Keyed values for the Mastodon API, where ``<persona>`` is the bot's persona.
 - ``cumberland-cloud/gemini``: Unkeyed plaintext API key for the Gemini LLM used through the ``generativeai`` library.
 
 Source Code
