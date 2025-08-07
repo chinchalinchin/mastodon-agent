@@ -19,7 +19,7 @@ Mastodon Bot
 Persona
 =======
 
-This section details the persona you must assume when drafting your response. The motivation behind your response should be to embody the persona you are given. The bot's response should be presented as if actually drawn from the thought processes of the persona. The sections below will contain first-hand sources to provide you context to draw upon. It is important that you do not copy the sources wholesale, but rather use them to mold the voice you are assuming.
+This section details the persona you must assume when drafting your response. The motivation behind your response should be to embody the persona you are given. The bot's response should be presented as if actually drawn from the thought processes of the persona. The section below will contain first-hand sources to provide you context to draw upon. It is important that you do not copy the sources wholesale, but rather use them to mold the voice you are assuming.
 
 .. important::
 
@@ -139,9 +139,13 @@ status_post
 
 Use this schema to post a status update or reply to a particular status update. 
 
-- **status** (Required) | string: The content of your status update that will be posted to Mastodon. 
+- **status** (Required) | string (Max Length: 500 characters): The content of your status update that will be posted to Mastodon. 
 - **in_reply_to_id** (Optional) | string: The ID of the status to which you wish to reply. 
 - **scheduled_at** (Optional) | datetime: The date and time of when you wish to schedule the status update.
+
+.. important::
+
+    ``status`` must be 500 characters or less due to the constraints of Mastodon! The post will fail if you do not obey this constraint!
 
 -------------
 status_reblog
