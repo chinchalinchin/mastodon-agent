@@ -168,12 +168,24 @@ The Lambda function execution role needs the following policy,
                 "Effect": "Allow",
                 "Action": "secretsmanager:GetSecretValue",
                 "Resource": [
-                    "arn:aws:secretsmanager:<aws-region>:<aws-account-id>:secret:<secret-id>"
+                    "arn:aws:secretsmanager:<aws-region>:<aws-account-id>:secret:<mastodon-secret-id>",
+                    "arn:aws:secretsmanager:<aws-region>:<aws-account-id>:secret:<gemini-secret-id>",
                 ]
             }
         ]
     }
-    
+
+The Mastodon secret must be a JSON, 
+
+.. code-block::
+
+    {
+        "client_id": "<client-id>",
+        "client_secret": "<client-secret>",
+        "access_token": "<access-token>",
+        "api_base_url": "<api-base-url>"
+    }
+
 Source Code
 ===========
 
