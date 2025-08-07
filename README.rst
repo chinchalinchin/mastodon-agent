@@ -104,7 +104,7 @@ Debug
 Documentation
 -------------
 
-- `Mastodon.py <https://mastodonpy.readthedocs.io/en/stable/>`
+- `Mastodon.py <https://mastodonpy.readthedocs.io/en/stable/>`_
 - `Google GenAI <https://googleapis.github.io/python-genai/>`_
 - `Google Gemini <https://ai.google.dev/gemini-api/docs>`_
 - `Jinja2 <https://jinja.palletsprojects.com/en/stable/>`_
