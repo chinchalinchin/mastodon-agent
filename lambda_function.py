@@ -100,7 +100,8 @@ def log(*msg) -> Any:
     for m in msg:
         if isinstance(m, dict):
             pprint.pprint(m)
-        print(m)
+        else: 
+            print(m)
     return 
     
 
