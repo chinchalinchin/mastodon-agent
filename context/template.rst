@@ -1,9 +1,9 @@
 .. This prompt is formatted in RestructuredText.
 
-.. _agn-bot:
+.. _bot:
 
-Allegany Galactic Nucleus Mastodon Bot 
-======================================
+Mastodon Bot 
+============
 
 .. topic:: Context 
     
