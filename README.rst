@@ -271,7 +271,6 @@ Template
 
 - ``context/template.rst``: This is the main template. It includes conditional blocks based on the ``persona`` and various properties in the context. 
 - ``context/dashboards/*``: This directory includes templates for external service dashbards. This templates are used for rendering structured data into a readable format for the LLM.
-- ``context/pages/*``: This directory includes static content from the main webpages.
 - ``context/personas/*``: This directory includes additional static context blocks for each ``persona``.
 
 TODO
