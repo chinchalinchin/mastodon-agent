@@ -112,6 +112,8 @@ Documentation
 Environment
 -----------
 
+The Lambda function must execute with a role that has permission to access the following resources.
+
 **State**
 
 A DynamoDB table ``mastodon-bot`` with a partition key of ``persona`` maintains the bot's state. The state has the following properties.
@@ -123,6 +125,31 @@ A DynamoDB table ``mastodon-bot`` with a partition key of ``persona`` maintains 
 
     This table can be used to store any state information that needs to be persisted across executions.
 
+The Lambda function execution role needs the following policy,
+
+.. code-block:: json
+
+    {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Sid": "Statement1",
+                "Effect": "Allow",
+                "Action": [
+                    "dynamodb:PutItem",
+                    "dynamodb:GetItem",
+                    "dynamodb:DeleteItem",
+                    "dynamodb:UpdateItem",
+                    "dynamodb:Query",
+                    "dynamodb:Scan"
+                ],
+                "Resource": [
+                    "arn:aws:dynamodb:<aws-region>:<aws-account-id>:table/mastodon-bot"
+                ]
+            }
+        ]
+    }
+
 **Secrets**
 
 Secrets have been created in the AWS SecretsManager for this bot to consume,
@@ -130,10 +157,27 @@ Secrets have been created in the AWS SecretsManager for this bot to consume,
 - ``prod/mastodon-bot/<persona>``: Keyed values for the Mastodon API, where ``<persona>`` is the bot's persona.
 - ``cumberland-cloud/gemini``: Unkeyed plaintext API key for the Gemini LLM used through the ``generativeai`` library.
 
+The Lambda function execution role needs the following policy, 
+
+.. code-block:: json 
+
+    {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Effect": "Allow",
+                "Action": "secretsmanager:GetSecretValue",
+                "Resource": [
+                    "arn:aws:secretsmanager:<aws-region>:<aws-account-id>:secret:<secret-id>"
+                ]
+            }
+        ]
+    }
+    
 Source Code
 ===========
 
-The source code is maintained in a Github repository `github.com/chinchalinchin/mastodon-bot.git`_ along with the static content of the website. 
+The source code is maintained in a Github repository `https://github.com/chinchalinchin/mastodon-bot.git`_ 
 
 Project Structure 
 -----------------
